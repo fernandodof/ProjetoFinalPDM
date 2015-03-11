@@ -8,6 +8,7 @@ import ag.ifpb.pdm.service.FBService;
 import ag.ifpb.pdm.service.impl.FBServiceImpl;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Service;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,12 +22,13 @@ import android.widget.LinearLayout.LayoutParams;
 
 public class MainActivity extends Activity {
 	private LinearLayout container;
-	private FBService service;
+	private static FBService service;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
+	  
 	  //
 	  service = new FBServiceImpl(new FBConfig(){
       @Override
@@ -123,4 +125,10 @@ public class MainActivity extends Activity {
 	  //
 	  setContentView(container);
 	}
+	
+	public static String sendMsg1(String msg){
+		return service.sendMessage(msg);
+	}
+	
+
 }
